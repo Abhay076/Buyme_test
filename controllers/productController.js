@@ -51,3 +51,24 @@ exports.deleteProduct = async (req, res) => {
     });
   }
 };
+
+//get product
+
+exports.getProduct = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    res.status(200).josn({
+      status: "success",
+      data: {
+        product,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "faild",
+      data: {
+        err,
+      },
+    });
+  }
+};
